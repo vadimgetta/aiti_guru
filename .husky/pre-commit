@@ -1,0 +1,7 @@
+echo "Проверка типов"
+
+pnpm  type:check
+
+echo "Форматирование кода"
+
+pnpm lint:fix

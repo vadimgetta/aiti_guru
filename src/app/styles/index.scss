@@ -1,0 +1,7 @@
+@use "./variables" as *;
+@use "./_reset.scss" as *;
+
+body {
+	font-family: "Inter", sans-serif;
+	font-optical-sizing: auto;
+}
