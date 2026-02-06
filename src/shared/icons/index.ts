@@ -1,3 +1,19 @@
+import ChevronLeftIcon from "./chevron-left.svg?react";
+import ChevronRightIcon from "./chevron-right.svg?react";
+import CloseIcon from "./close.svg?react";
+import EyeIcon from "./eye.svg?react";
+import LockIcon from "./lock.svg?react";
 import MailIcon from "./mail.svg?react";
+import SearchIcon from "./search.svg?react";
+import ThreeDotsIcon from "./three-dots.svg?react";
 
-export { MailIcon };
+export {
+	MailIcon,
+	LockIcon,
+	CloseIcon,
+	EyeIcon,
+	SearchIcon,
+	ThreeDotsIcon,
+	ChevronLeftIcon,
+	ChevronRightIcon
+};
