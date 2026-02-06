@@ -1,0 +1,19 @@
+.input {
+	width: 100%;
+}
+.primary {
+	padding: 14px 54px;
+	border-radius: 12px;
+	border: 1px solid $ghost_light;
+	color: $dark;
+	outline: none;
+	transition: 0.3s box-shadow ease;
+	font-size: 18px;
+	&:focus {
+		box-shadow: 1px 1px 10px 0px rgba($primary, 0.75);
+	}
+}
+.secondary {
+	border-radius: 8px;
+	padding: 12px 20px 12px 52px;
+}
