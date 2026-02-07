@@ -1,5 +1,9 @@
-import type { ReactNode } from "react";
+import { Outlet } from "react-router";
 
-export const UnauthorizedLayout = ({ children }: { children: ReactNode }) => {
-	return <main>{children}</main>;
+export const UnauthorizedLayout = () => {
+	return (
+		<main>
+			<Outlet />
+		</main>
+	);
 };

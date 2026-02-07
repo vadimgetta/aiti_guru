@@ -3,6 +3,7 @@ import ChevronRightIcon from "./chevron-right.svg?react";
 import CloseIcon from "./close.svg?react";
 import EyeIcon from "./eye.svg?react";
 import LockIcon from "./lock.svg?react";
+import LogoIcon from "./logo.svg?react";
 import MailIcon from "./mail.svg?react";
 import SearchIcon from "./search.svg?react";
 import ThreeDotsIcon from "./three-dots.svg?react";
@@ -15,5 +16,6 @@ export {
 	SearchIcon,
 	ThreeDotsIcon,
 	ChevronLeftIcon,
-	ChevronRightIcon
+	ChevronRightIcon,
+	LogoIcon
 };
