@@ -7,6 +7,7 @@ export const App = () => {
 			<h1>App</h1>
 			<MailIcon />
 			<Input type="text" placeholder="Тест" appearance="primary" />
+			<Input type="text" placeholder="Тест" appearance="secondary" />
 		</div>
 	);
 };
