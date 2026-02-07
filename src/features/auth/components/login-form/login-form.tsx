@@ -1,4 +1,4 @@
-import { CheckBox, Input } from "@/shared/components";
+import { Button, CheckBox, Input } from "@/shared/components";
 
 import styles from "./styles.module.scss";
 
@@ -38,6 +38,9 @@ export const LoginForm = () => {
 				<CheckBox />
 				<span>Запомнить меня</span>
 			</div>
+			<Button appeareence="primary" size="lg">
+				Войти
+			</Button>
 		</form>
 	);
 };
