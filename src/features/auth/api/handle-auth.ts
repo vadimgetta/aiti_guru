@@ -1,12 +1,11 @@
-import { mutationOptions } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 
 import { instanceAxios } from "@/shared/api";
 import { AUTH_ROUTE } from "@/shared/config";
 
-import type { IAuth, IAuthResponse } from "../model";
+import type { IAuthParams, IAuthResponse } from "../model";
 
-const handleAuth = async ({ username, password }: IAuth) => {
+export const handleAuth = async ({ username, password }: IAuthParams) => {
 	try {
 		const { data } = await instanceAxios.post<IAuthResponse>(`${AUTH_ROUTE}/login`, {
 			username,
@@ -26,21 +25,4 @@ const handleAuth = async ({ username, password }: IAuth) => {
 
 		throw new Error(message);
 	}
-};
-
-export const handleAuthOptions = (
-	username: string,
-	password: string,
-	onSuccess?: (data: IAuthResponse | undefined) => void,
-	onError?: (error: unknown) => void
-) => {
-	return mutationOptions({
-		mutationFn: () => handleAuth({ username, password }),
-		onSuccess: (data) => {
-			onSuccess?.(data);
-		},
-		onError: (e) => {
-			onError?.(e);
-		}
-	});
 };

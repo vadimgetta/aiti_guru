@@ -10,7 +10,7 @@ export interface IAuthResponse {
 	image: string;
 }
 
-export interface IAuth {
+export interface IAuthParams {
 	username: string;
 	password: string;
 }
