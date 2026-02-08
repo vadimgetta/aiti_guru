@@ -1,11 +1,13 @@
 import { lazy, type ComponentType, Suspense } from "react";
 
+import { FallbackLoader } from "@/shared/components";
+
 const withLazy = (importer: () => Promise<{ default: ComponentType }>) => {
 	const LazyComponent = lazy(importer);
 
 	return function LazyWrapper() {
 		return (
-			<Suspense fallback={<></>}>
+			<Suspense fallback={<FallbackLoader />}>
 				<LazyComponent />
 			</Suspense>
 		);

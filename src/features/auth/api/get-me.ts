@@ -7,10 +7,8 @@ import type { IUser } from "../model";
 
 const getMe = async () => {
 	try {
-		const { data, status } = await instanceAxios.post<IUser>(`${AUTH_ROUTE}/me`);
-		if (status === 200) {
-			return data;
-		}
+		const { data } = await instanceAxios.post<IUser>(`${AUTH_ROUTE}/me`);
+		return data;
 	} catch (e) {
 		console.error(e);
 	}
