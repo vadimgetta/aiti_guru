@@ -16,7 +16,7 @@ export const Heading = ({
 		Tag,
 		{
 			className: clsx(styles.heading, styles[`h${level}`], className, {
-				[styles.centred]: centred
+				["centerText"]: centred
 			}),
 			...props
 		},

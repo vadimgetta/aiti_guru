@@ -3,6 +3,6 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 export interface IButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	children: ReactNode;
 	asChild?: boolean;
-	appeareence: "primary";
+	appearance: "primary";
 	size?: "sm" | "md" | "lg";
 }

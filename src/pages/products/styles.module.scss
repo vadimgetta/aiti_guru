@@ -1,0 +1,36 @@
+.wrapper {
+	margin-top: 30px;
+	background: $light;
+	width: 100%;
+	min-height: 100%;
+}
+
+.top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin-bottom: 40px;
+}
+
+.inner {
+	padding: 30px 0;
+}
+
+.table {
+	width: 100%;
+	border-spacing: 0;
+	position: relative;
+}
+.header {
+	position: sticky;
+	top: 0;
+	background: $light;
+	z-index: 2;
+	th {
+		padding: 27px 0;
+		border-bottom: 1px solid $ghost_3;
+		h6 {
+			color: $ghost_2;
+		}
+	}
+}
