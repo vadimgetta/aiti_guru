@@ -7,9 +7,9 @@ import { PAGES_ROUTES } from "@/shared/config";
 import { getMeOptions } from "../../api/get-me";
 
 export const ProtectedRoutes = ({ children }: { children: ReactNode }) => {
-	const { data: isAuth, isLoading } = useQuery(getMeOptions);
+	const { data: user, isLoading } = useQuery(getMeOptions);
 	if (isLoading) {
-		return <div></div>;
+		return <div>Loading</div>;
 	}
-	return isAuth ? children : <Navigate to={PAGES_ROUTES.LOGIN} replace />;
+	return user ? children : <Navigate to={PAGES_ROUTES.LOGIN} replace />;
 };

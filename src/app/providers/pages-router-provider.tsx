@@ -1,11 +1,9 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { LoginPage } from "@/pages";
-import { ProductsPage } from "@/pages/products";
+import { LoginPage, NotFoundPage, ProductsPage } from "@/pages";
 import { PAGES_ROUTES } from "@/shared/config";
 
-import { AuthorizedLayout } from "../layouts/authorized-layout/authorized-layout";
-import { UnauthorizedLayout } from "../layouts/unauthorized-layout/unauthorized-layout";
+import { AuthorizedLayout, UnauthorizedLayout } from "../layouts";
 
 export const PagesRouterProvider = () => {
 	return (
@@ -17,6 +15,7 @@ export const PagesRouterProvider = () => {
 				<Route element={<UnauthorizedLayout />}>
 					<Route path={PAGES_ROUTES.LOGIN} element={<LoginPage />} index />
 				</Route>
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</BrowserRouter>
 	);
