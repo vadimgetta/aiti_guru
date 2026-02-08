@@ -1,0 +1,18 @@
+import { instanceAxios } from "@/shared/api";
+import { PRODUCTS_ROUTE } from "@/shared/config";
+
+import type { IProductResponse } from "../model/products";
+
+export const getProducts = async (search: string | null) => {
+	try {
+		const url = search ? `${PRODUCTS_ROUTE}/search` : PRODUCTS_ROUTE;
+
+		const { data } = await instanceAxios.get<IProductResponse>(url, {
+			params: search ? { q: search } : undefined
+		});
+
+		return data;
+	} catch (e) {
+		console.error(e);
+	}
+};
