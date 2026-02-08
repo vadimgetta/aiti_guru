@@ -4,14 +4,15 @@ import { API } from "../config";
 
 export const instanceAxios = axios.create({
 	baseURL: API,
-	withCredentials: true,
+	// withCredentials: true,
 	headers: {
 		"Content-Type": "application/json"
 	}
 });
 
 instanceAxios.interceptors.request.use((config) => {
-	const accessToken = localStorage.getItem("accessToken");
+	const accessToken =
+		localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
 
 	if (accessToken) {
 		config.headers.Authorization = `Bearer ${accessToken}`;
