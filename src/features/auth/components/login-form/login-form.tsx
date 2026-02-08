@@ -48,20 +48,9 @@ export const LoginForm = () => {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-			{!!authError && (
-				<div className={clsx(styles.error, styles.center)}>
-					{authError.message === "Invalid credentials"
-						? "Неверный логин или пароль"
-						: authError.message}
-				</div>
-			)}
-
 			<div className={styles.inputs}>
 				<div className={styles.field}>
 					<label htmlFor="username">Логин</label>
-					{errors.username && (
-						<div className={styles.error}>{errors.username.message}</div>
-					)}
 					<Input
 						type="text"
 						id="username"
@@ -70,13 +59,13 @@ export const LoginForm = () => {
 						error={!!errors.username}
 						{...register("username", { required: "Введите логин" })}
 					/>
+					{errors.username && (
+						<div className={styles.error}>{errors.username.message}</div>
+					)}
 				</div>
 
 				<div className={styles.field}>
 					<label htmlFor="password">Пароль</label>
-					{errors.password && (
-						<div className={styles.error}>{errors.password.message}</div>
-					)}
 					<Input
 						type="password"
 						id="password"
@@ -85,7 +74,17 @@ export const LoginForm = () => {
 						error={!!errors.password}
 						{...register("password", { required: "Введите пароль" })}
 					/>
+					{errors.password && (
+						<div className={styles.error}>{errors.password.message}</div>
+					)}
 				</div>
+				{!!authError && (
+					<div className={clsx(styles.error, styles.center)}>
+						{authError.message === "Invalid credentials"
+							? "Неверный логин или пароль"
+							: authError.message}
+					</div>
+				)}
 			</div>
 
 			<div className={styles.remember}>
