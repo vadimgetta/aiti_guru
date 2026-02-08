@@ -2,7 +2,7 @@ import { NavLink } from "react-router";
 
 import { LoginForm } from "@/features";
 import { Heading } from "@/shared/components";
-import { ROUTES } from "@/shared/config";
+import { PAGES_ROUTES } from "@/shared/config";
 import { LogoIcon } from "@/shared/icons";
 
 import styles from "./styles.module.scss";
@@ -25,7 +25,8 @@ export const LoginPage = () => {
 							<span>или</span>
 						</div>
 						<div className={styles.footer}>
-							Нет аккаунта? <NavLink to={ROUTES.LOGIN}>Создать</NavLink>
+							Нет аккаунта?{" "}
+							<NavLink to={PAGES_ROUTES.LOGIN}>Создать</NavLink>
 						</div>
 					</div>
 				</div>
