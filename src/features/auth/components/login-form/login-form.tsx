@@ -5,7 +5,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 import { queryClient } from "@/shared/api";
-import { Button, CheckBox, Input } from "@/shared/components";
+import { Button, CheckBox, Input, Spinner } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
 
 import { handleAuth, getMeOptions } from "../../api";
@@ -96,8 +96,14 @@ export const LoginForm = () => {
 				<span>Запомнить меня</span>
 			</div>
 
-			<Button type="submit" appeareence="primary" size="lg" disabled={isPending}>
-				Войти
+			<Button
+				type="submit"
+				appeareence="primary"
+				size="lg"
+				disabled={isPending}
+				className={styles.button}
+			>
+				{isPending ? <Spinner appearence="secondary" size="sm" /> : "Войти"}
 			</Button>
 		</form>
 	);
