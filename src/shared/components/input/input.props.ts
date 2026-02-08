@@ -2,4 +2,5 @@ import type { InputHTMLAttributes } from "react";
 
 export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	appearance: "primary" | "secondary";
+	error?: boolean
 }

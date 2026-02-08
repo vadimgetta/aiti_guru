@@ -1,17 +1,21 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 
-import { LoginPage } from "@/pages";
-import { ROUTES } from "@/shared/config";
+import { LoginPage, NotFoundPage, ProductsPage } from "@/pages";
+import { PAGES_ROUTES } from "@/shared/config";
 
-import { UnauthorizedLayout } from "../layouts/unauthorized-layout/unauthorized-layout";
+import { AuthorizedLayout, UnauthorizedLayout } from "../layouts";
 
 export const PagesRouterProvider = () => {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<UnauthorizedLayout />}>
-					<Route path={ROUTES.LOGIN} element={<LoginPage />} />
+				<Route element={<AuthorizedLayout />} path="/">
+					<Route path={PAGES_ROUTES.PRODUCTS} element={<ProductsPage />} />
 				</Route>
+				<Route element={<UnauthorizedLayout />}>
+					<Route path={PAGES_ROUTES.LOGIN} element={<LoginPage />} index />
+				</Route>
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</BrowserRouter>
 	);

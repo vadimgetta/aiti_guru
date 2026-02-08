@@ -1,37 +1,55 @@
 import axios from "axios";
 
+import { API } from "../config";
+
 export const instanceAxios = axios.create({
-	baseURL: "base-url",
+	baseURL: API,
+	// withCredentials: true,
 	headers: {
 		"Content-Type": "application/json"
-	},
-	withCredentials: true
+	}
+});
+
+instanceAxios.interceptors.request.use((config) => {
+	const accessToken =
+		localStorage.getItem("accessToken") || sessionStorage.getItem("accessToken");
+
+	if (accessToken) {
+		config.headers.Authorization = `Bearer ${accessToken}`;
+	}
+
+	return config;
 });
 
 instanceAxios.interceptors.response.use(
-	(config) => config,
+	(response) => response,
 	async (error) => {
 		const originalRequest = error.config;
 
-		if (
-			error.response &&
-			error.response.status === 401 &&
-			originalRequest &&
-			!originalRequest._isRetry
-		) {
+		if (error.response?.status === 401 && !originalRequest._isRetry) {
 			originalRequest._isRetry = true;
 
 			try {
-				await axios.post(``, {}, { withCredentials: true });
+				const response = await axios.post(
+					`${API}/auth/refresh`,
+					{},
+					{ withCredentials: true }
+				);
 
-				return instanceAxios.request(originalRequest);
+				const newAccessToken = response.data.accessToken;
+				const storage = localStorage.getItem("accessToken")
+					? localStorage
+					: sessionStorage;
+				storage.setItem("accessToken", newAccessToken);
+
+				originalRequest.headers.Authorization = `Bearer ${newAccessToken}`;
+
+				return instanceAxios(originalRequest);
 			} catch (e) {
-				if (e instanceof Error) {
-					console.error(e.message);
-				}
+				console.error(e);
 			}
 		}
 
-		throw error;
+		return Promise.reject(error);
 	}
 );
