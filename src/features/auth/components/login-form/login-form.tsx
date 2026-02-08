@@ -97,7 +97,7 @@ export const LoginForm = () => {
 
 			<Button
 				type="submit"
-				appeareence="primary"
+				appearance="primary"
 				size="lg"
 				disabled={isPending}
 				className={styles.button}
