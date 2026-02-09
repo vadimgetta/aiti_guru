@@ -11,6 +11,7 @@ import { PAGES_ROUTES } from "@/shared/config";
 import { handleAuth, getMeOptions } from "../../api";
 import type { IAuthParams, IAuthResponse } from "../../model";
 import type { IAuthError } from "../../model/auth";
+import { saveToken } from "../../utils";
 
 import styles from "./styles.module.scss";
 
@@ -30,9 +31,7 @@ export const LoginForm = () => {
 	const { mutate, isPending } = useMutation<IAuthResponse, Error, IAuthParams>({
 		mutationFn: async (data: IAuthParams) => handleAuth(data),
 		onSuccess: (data) => {
-			const storage = rememberMe ? localStorage : sessionStorage;
-			storage.setItem("accessToken", data.accessToken);
-
+			saveToken(rememberMe, data.accessToken);
 			queryClient.fetchQuery(getMeOptions);
 			navigate(PAGES_ROUTES.PRODUCTS);
 		},
