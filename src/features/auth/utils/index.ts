@@ -1,1 +1,1 @@
-export { saveToken } from "./save-token";
+export * from "./token";

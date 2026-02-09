@@ -12,3 +12,9 @@ export { InputLabel } from "./input-label/input-label";
 export const Modal = lazy(() =>
 	import("./modal/modal").then((module) => ({ default: module.Modal }))
 );
+
+export const Notification = lazy(() =>
+	import("./notification/notification").then((module) => ({
+		default: module.Notification
+	}))
+);
