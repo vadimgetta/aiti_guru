@@ -13,19 +13,21 @@ import styles from "./styles.module.scss";
 export const ProductsPage = () => {
 	const [searchParams] = useSearchParams();
 	const search = searchParams.get("q") ?? "";
+	const sortBy = searchParams.get("sortBy") ?? "";
+	const order = searchParams.get("order") ?? "";
 	const limit = 10;
 
-	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status } =
+	const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, isFetched } =
 		useInfiniteQuery<
 			IProductResponse,
 			Error,
 			InfiniteData<IProductResponse>,
-			[string, string],
+			[string, string, string, string],
 			number
 		>({
-			queryKey: [QUERY_KEYS.PRODUCTS, search],
+			queryKey: [QUERY_KEYS.PRODUCTS, search, sortBy, order],
 			queryFn: ({ pageParam = 0 }) =>
-				getProducts({ search, limit, skip: pageParam }),
+				getProducts({ search, limit, skip: pageParam, sortBy, order }),
 			getNextPageParam: (lastPage, allPages) => {
 				const loaded = allPages.reduce(
 					(acc, page) => acc + page.products.length,
@@ -33,7 +35,8 @@ export const ProductsPage = () => {
 				);
 				return loaded < lastPage.total ? loaded : undefined;
 			},
-			initialPageParam: 0
+			initialPageParam: 0,
+			placeholderData: (prev) => prev
 		});
 
 	if (status === "pending") {
@@ -51,20 +54,26 @@ export const ProductsPage = () => {
 						<Heading level={3}>Все позиции</Heading>
 						<AddProduct />
 					</div>
-					<ProductsTable data={data} />
-					{hasNextPage && (
-						<Button
-							appearance="primary"
-							onClick={() => fetchNextPage()}
-							disabled={isFetchingNextPage}
-						>
-							{isFetchingNextPage ? (
-								<Spinner size="sm" appearence="secondary" />
-							) : (
-								"Загрузить ещё"
-							)}
-						</Button>
-					)}
+					<ProductsTable
+						data={data}
+						isLoading={!isFetched || isFetchingNextPage}
+					/>
+					<div className={styles.bottom}>
+						{hasNextPage && (
+							<Button
+								appearance="primary"
+								onClick={() => fetchNextPage()}
+								disabled={isFetchingNextPage}
+								size="lg"
+							>
+								{isFetchingNextPage ? (
+									<Spinner size="sm" appearence="secondary" />
+								) : (
+									"Загрузить ещё"
+								)}
+							</Button>
+						)}
+					</div>
 				</div>
 			</Container>
 		</div>

@@ -15,3 +15,12 @@
 .inner {
 	padding: 30px 0;
 }
+
+.bottom {
+	display: flex;
+	justify-content: center;
+	margin-top: 40px;
+	button {
+		min-width: 200px;
+	}
+}

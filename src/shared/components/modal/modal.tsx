@@ -31,7 +31,7 @@ export const Modal = ({
 				{onClose && (
 					<div className={styles.header}>
 						<button onClick={onClose} className={styles.close}>
-							<CloseIcon width={16} height={16} />
+							<CloseIcon width={19} height={14} />
 						</button>
 					</div>
 				)}
