@@ -1,4 +1,11 @@
 .button {
 	display: flex;
+	align-items: center;
 	gap: 15px;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
 }

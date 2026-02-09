@@ -36,3 +36,10 @@
 .bad {
 	color: $danger;
 }
+
+.placeholder {
+	background: $ghost_2;
+	border-radius: 5px;
+	width: 48px;
+	height: 48px;
+}

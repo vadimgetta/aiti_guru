@@ -4,13 +4,13 @@ import type { IProduct } from "@/shared/model";
 
 import type { IProductForm } from "../model/add-product-form";
 
-export const createProduct = async (data: IProductForm) => {
+export const createProduct = async (body: IProductForm): Promise<IProduct> => {
 	try {
-		const response = await instanceAxios.post<IProduct>(`${PRODUCTS_ROUTE}/add`, {
-			data
+		const { data } = await instanceAxios.post<IProduct>(`${PRODUCTS_ROUTE}/add`, {
+			...body
 		});
-		return response.data;
-	} catch (e) {
-		console.error(e);
+		return { ...data, thumbnail: "" };
+	} catch {
+		throw new Error("Product not created");
 	}
 };

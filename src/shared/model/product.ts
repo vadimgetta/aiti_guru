@@ -39,7 +39,7 @@ export interface IProduct {
 	sku: string;
 	rating: number;
 	stock: number;
-	thumbnail: string;
+	thumbnail?: string;
 }
 
 export interface IProductResponse extends ICollectionGeneral {

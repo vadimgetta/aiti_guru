@@ -11,7 +11,16 @@ export const ProductItem = ({ item }: { item: IProduct }) => {
 		<tr className={styles.item}>
 			<td>
 				<div className={styles.info}>
-					<img src={item.thumbnail} alt={item.title} width={48} height={48} />
+					{item.thumbnail ? (
+						<img
+							src={item.thumbnail}
+							alt={item.title}
+							width={48}
+							height={48}
+						/>
+					) : (
+						<div className={styles.placeholder}></div>
+					)}
 					<div className={styles.label}>
 						<Heading level={4}>{item.title}</Heading>
 						<p>{item.category}</p>
