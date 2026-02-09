@@ -1,0 +1,17 @@
+.field {
+	display: flex;
+	flex-direction: column;
+	border: none;
+	gap: 6px;
+	label {
+		font-weight: 500;
+		font-size: 18px;
+		color: $dark_light;
+	}
+}
+
+.error {
+	color: $danger;
+	font-weight: 500;
+	font-size: 16px;
+}

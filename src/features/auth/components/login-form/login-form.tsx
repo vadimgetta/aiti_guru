@@ -5,7 +5,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 import { queryClient } from "@/shared/api";
-import { Button, CheckBox, Input, Spinner } from "@/shared/components";
+import { Button, CheckBox, Input, InputLabel, Spinner } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
 
 import { handleAuth, getMeOptions } from "../../api";
@@ -48,8 +48,12 @@ export const LoginForm = () => {
 	return (
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
 			<div className={styles.inputs}>
-				<div className={styles.field}>
-					<label htmlFor="username">Логин</label>
+				<InputLabel
+					idForLabel="username"
+					title="Логин"
+					error={errors.username ? errors.username?.message : ""}
+					disabled={isPending}
+				>
 					<Input
 						type="text"
 						id="username"
@@ -58,13 +62,14 @@ export const LoginForm = () => {
 						error={!!errors.username}
 						{...register("username", { required: "Введите логин" })}
 					/>
-					{errors.username && (
-						<div className={styles.error}>{errors.username.message}</div>
-					)}
-				</div>
+				</InputLabel>
 
-				<div className={styles.field}>
-					<label htmlFor="password">Пароль</label>
+				<InputLabel
+					idForLabel="password"
+					title="Пароль"
+					disabled={isPending}
+					error={errors.password ? errors.password?.message : ""}
+				>
 					<Input
 						type="password"
 						id="password"
@@ -73,12 +78,9 @@ export const LoginForm = () => {
 						error={!!errors.password}
 						{...register("password", { required: "Введите пароль" })}
 					/>
-					{errors.password && (
-						<div className={styles.error}>{errors.password.message}</div>
-					)}
-				</div>
+				</InputLabel>
 				{!!authError && (
-					<div className={clsx(styles.error, styles.center)}>
+					<div className={clsx(styles.error, "centerText")}>
 						{authError.message === "Invalid credentials"
 							? "Неверный логин или пароль"
 							: authError.message}

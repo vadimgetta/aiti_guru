@@ -2,8 +2,7 @@ import clsx from "clsx";
 
 import { Heading } from "@/shared/components";
 import { ThreeDotsIcon } from "@/shared/icons";
-
-import type { IProduct } from "../../model/products";
+import type { IProduct } from "@/shared/model";
 
 import styles from "./styles.module.scss";
 

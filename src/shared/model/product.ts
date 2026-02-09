@@ -1,6 +1,11 @@
-import type { Dimensions, Review, Meta, ICollectionGeneral } from "@/shared/model";
+import type {
+	Dimensions,
+	ICollectionGeneral,
+	Meta,
+	Review
+} from "./collection-interface";
 
-export interface IProduct {
+export interface IProductFull {
 	id: number;
 	title: string;
 	description: string;
@@ -22,6 +27,18 @@ export interface IProduct {
 	minimumOrderQuantity: number;
 	meta: Meta;
 	images: string[];
+	thumbnail: string;
+}
+
+export interface IProduct {
+	id: number;
+	title: string;
+	category: string;
+	brand?: string;
+	price: number;
+	sku: string;
+	rating: number;
+	stock: number;
 	thumbnail: string;
 }
 

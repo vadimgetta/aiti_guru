@@ -1,12 +1,13 @@
 import { useInfiniteQuery, type InfiniteData } from "@tanstack/react-query";
 import { useSearchParams } from "react-router";
 
-import { Button, Container, FallbackLoader, Heading } from "@/shared/components";
+import { AddProduct } from "@/features";
+import { Button, Container, FallbackLoader, Heading, Spinner } from "@/shared/components";
 import { QUERY_KEYS } from "@/shared/config";
+import type { IProductResponse } from "@/shared/model";
 
 import { getProducts } from "./api/get-products";
 import { ProductItem } from "./components/product-item/product-item";
-import type { IProductResponse, IProduct } from "./model/products";
 import styles from "./styles.module.scss";
 
 export const ProductsPage = () => {
@@ -48,7 +49,7 @@ export const ProductsPage = () => {
 				<div className={styles.inner}>
 					<div className={styles.top}>
 						<Heading level={3}>Все позиции</Heading>
-						<Button appearance="primary">Добавить</Button>
+						<AddProduct />
 					</div>
 
 					<table className={styles.table}>
@@ -86,7 +87,7 @@ export const ProductsPage = () => {
 						</thead>
 						<tbody>
 							{data?.pages.map((page: IProductResponse) =>
-								page.products.map((product: IProduct) => (
+								page.products.map((product) => (
 									<ProductItem key={product.id} item={product} />
 								))
 							)}
@@ -99,7 +100,11 @@ export const ProductsPage = () => {
 							onClick={() => fetchNextPage()}
 							disabled={isFetchingNextPage}
 						>
-							{isFetchingNextPage ? "Загрузка..." : "Загрузить ещё"}
+							{isFetchingNextPage ? (
+								<Spinner size="sm" appearence="secondary" />
+							) : (
+								"Загрузить ещё"
+							)}
 						</Button>
 					)}
 				</div>

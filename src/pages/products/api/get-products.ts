@@ -1,7 +1,6 @@
 import { instanceAxios } from "@/shared/api";
 import { PRODUCTS_ROUTE } from "@/shared/config";
-
-import type { IProductResponse } from "../model/products";
+import type { IProductResponse } from "@/shared/model";
 
 export const getProducts = async ({
 	search = "",
