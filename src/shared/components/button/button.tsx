@@ -7,12 +7,12 @@ export const Button = ({
 	children,
 	className,
 	asChild,
-	appeareence,
+	appearance,
 	size = "md",
 	...props
 }: IButtonProps) => {
 	const classes = clsx(styles.button, styles[`size-${size}`], className, {
-		[styles.primary]: appeareence === "primary"
+		[styles.primary]: appearance === "primary"
 	});
 	if (asChild && isValidElement(children)) {
 		return cloneElement(children as React.JSX.Element, {

@@ -4,9 +4,11 @@ import { instanceAxios } from "@/shared/api";
 import { AUTH_ROUTE } from "@/shared/config";
 
 import type { IAuthParams, IAuthResponse } from "../model";
+import { removeToken } from "../utils";
 
 export const handleAuth = async ({ username, password }: IAuthParams) => {
 	try {
+		removeToken();
 		const { data } = await instanceAxios.post<IAuthResponse>(`${AUTH_ROUTE}/login`, {
 			username,
 			password

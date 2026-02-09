@@ -5,12 +5,13 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useNavigate } from "react-router";
 
 import { queryClient } from "@/shared/api";
-import { Button, CheckBox, Input } from "@/shared/components";
+import { Button, CheckBox, Input, InputLabel, Spinner } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
 
 import { handleAuth, getMeOptions } from "../../api";
 import type { IAuthParams, IAuthResponse } from "../../model";
 import type { IAuthError } from "../../model/auth";
+import { saveToken } from "../../utils";
 
 import styles from "./styles.module.scss";
 
@@ -30,9 +31,7 @@ export const LoginForm = () => {
 	const { mutate, isPending } = useMutation<IAuthResponse, Error, IAuthParams>({
 		mutationFn: async (data: IAuthParams) => handleAuth(data),
 		onSuccess: (data) => {
-			const storage = rememberMe ? localStorage : sessionStorage;
-			storage.setItem("accessToken", data.accessToken);
-
+			saveToken(rememberMe, data.accessToken);
 			queryClient.fetchQuery(getMeOptions);
 			navigate(PAGES_ROUTES.PRODUCTS);
 		},
@@ -48,20 +47,13 @@ export const LoginForm = () => {
 
 	return (
 		<form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-			{!!authError && (
-				<div className={clsx(styles.error, styles.center)}>
-					{authError.message === "Invalid credentials"
-						? "Неверный логин или пароль"
-						: authError.message}
-				</div>
-			)}
-
 			<div className={styles.inputs}>
-				<div className={styles.field}>
-					<label htmlFor="username">Логин</label>
-					{errors.username && (
-						<div className={styles.error}>{errors.username.message}</div>
-					)}
+				<InputLabel
+					idForLabel="username"
+					title="Логин"
+					error={errors.username ? errors.username?.message : ""}
+					disabled={isPending}
+				>
 					<Input
 						type="text"
 						id="username"
@@ -70,13 +62,14 @@ export const LoginForm = () => {
 						error={!!errors.username}
 						{...register("username", { required: "Введите логин" })}
 					/>
-				</div>
+				</InputLabel>
 
-				<div className={styles.field}>
-					<label htmlFor="password">Пароль</label>
-					{errors.password && (
-						<div className={styles.error}>{errors.password.message}</div>
-					)}
+				<InputLabel
+					idForLabel="password"
+					title="Пароль"
+					disabled={isPending}
+					error={errors.password ? errors.password?.message : ""}
+				>
 					<Input
 						type="password"
 						id="password"
@@ -85,7 +78,14 @@ export const LoginForm = () => {
 						error={!!errors.password}
 						{...register("password", { required: "Введите пароль" })}
 					/>
-				</div>
+				</InputLabel>
+				{!!authError && (
+					<div className={clsx(styles.error, "centerText")}>
+						{authError.message === "Invalid credentials"
+							? "Неверный логин или пароль"
+							: authError.message}
+					</div>
+				)}
 			</div>
 
 			<div className={styles.remember}>
@@ -96,8 +96,14 @@ export const LoginForm = () => {
 				<span>Запомнить меня</span>
 			</div>
 
-			<Button type="submit" appeareence="primary" size="lg" disabled={isPending}>
-				Войти
+			<Button
+				type="submit"
+				appearance="primary"
+				size="lg"
+				disabled={isPending}
+				className={styles.button}
+			>
+				{isPending ? <Spinner appearence="secondary" size="sm" /> : "Войти"}
 			</Button>
 		</form>
 	);

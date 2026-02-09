@@ -8,16 +8,6 @@
 	flex-direction: column;
 	gap: 16px;
 }
-.field {
-	display: flex;
-	flex-direction: column;
-	gap: 6px;
-	label {
-		font-weight: 500;
-		font-size: 18px;
-		color: $dark_light;
-	}
-}
 
 .remember {
 	display: flex;
@@ -28,12 +18,8 @@
 		color: $secondary;
 	}
 }
-.error {
-	color: $danger;
-	font-weight: 500;
-	font-size: 16px;
-}
 
-.center {
-	text-align: center;
+.button {
+	display: flex;
+	justify-content: center;
 }

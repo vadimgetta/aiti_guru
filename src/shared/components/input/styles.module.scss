@@ -2,7 +2,7 @@
 	width: 100%;
 }
 .primary {
-	padding: 14px 54px;
+	padding: 14px 54px 14px 20px;
 	border-radius: 12px;
 	border: 1px solid $ghost_3;
 	color: $dark;
@@ -19,6 +19,7 @@
 	border: none;
 	color: $secondary;
 	background: $ghost_3;
+	outline: none;
 }
 
 .error {

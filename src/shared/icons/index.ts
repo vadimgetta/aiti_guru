@@ -5,6 +5,7 @@ import EyeIcon from "./eye.svg?react";
 import LockIcon from "./lock.svg?react";
 import LogoIcon from "./logo.svg?react";
 import MailIcon from "./mail.svg?react";
+import PlusIcon from "./plus-icon.svg?react";
 import SearchIcon from "./search.svg?react";
 import ThreeDotsIcon from "./three-dots.svg?react";
 
@@ -17,5 +18,6 @@ export {
 	ThreeDotsIcon,
 	ChevronLeftIcon,
 	ChevronRightIcon,
-	LogoIcon
+	LogoIcon,
+	PlusIcon
 };

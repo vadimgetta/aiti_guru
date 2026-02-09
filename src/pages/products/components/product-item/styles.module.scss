@@ -1,0 +1,45 @@
+.item {
+	td {
+		padding: 27px 0;
+		border-bottom: 1px solid $ghost_3;
+	}
+}
+
+.info {
+	display: flex;
+	align-items: center;
+	gap: 18px;
+}
+.label {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+	align-items: flex-start;
+	h4 {
+		text-shadow: $boxShadow;
+	}
+	p {
+		color: $ghost_2;
+	}
+}
+
+.button {
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+.text {
+	font-family: "Roboto Mono", monospace;
+}
+
+.bad {
+	color: $danger;
+}
+
+.placeholder {
+	background: $ghost_2;
+	border-radius: 5px;
+	width: 48px;
+	height: 48px;
+}
