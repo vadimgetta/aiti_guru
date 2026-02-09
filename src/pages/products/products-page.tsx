@@ -7,7 +7,7 @@ import { QUERY_KEYS } from "@/shared/config";
 import type { IProductResponse } from "@/shared/model";
 
 import { getProducts } from "./api/get-products";
-import { ProductItem } from "./components/product-item/product-item";
+import { ProductsTable } from "./components/products-table/products-table";
 import styles from "./styles.module.scss";
 
 export const ProductsPage = () => {
@@ -51,49 +51,7 @@ export const ProductsPage = () => {
 						<Heading level={3}>Все позиции</Heading>
 						<AddProduct />
 					</div>
-
-					<table className={styles.table}>
-						<colgroup>
-							<col width={"25%"} />
-							<col width={"15%"} />
-							<col width={"15%"} />
-							<col width={"15%"} />
-							<col width={"15%"} />
-							<col width={"15%"} />
-							<col width={"15%"} />
-						</colgroup>
-						<thead className={styles.header}>
-							<tr>
-								<th>
-									<Heading level={6}>Наименование</Heading>
-								</th>
-								<th>
-									<Heading level={6}>Вендор</Heading>
-								</th>
-								<th>
-									<Heading level={6}>Артикул</Heading>
-								</th>
-								<th>
-									<Heading level={6}>Оценка</Heading>
-								</th>
-								<th>
-									<Heading level={6}>Цена</Heading>
-								</th>
-								<th>
-									<Heading level={6}>Количество</Heading>
-								</th>
-								<th></th>
-							</tr>
-						</thead>
-						<tbody>
-							{data?.pages.map((page: IProductResponse) =>
-								page.products.map((product) => (
-									<ProductItem key={product.id} item={product} />
-								))
-							)}
-						</tbody>
-					</table>
-
+					<ProductsTable data={data} />
 					{hasNextPage && (
 						<Button
 							appearance="primary"
