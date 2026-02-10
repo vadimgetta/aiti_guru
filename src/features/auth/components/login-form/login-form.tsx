@@ -7,7 +7,13 @@ import { useNavigate } from "react-router";
 import { queryClient } from "@/shared/api";
 import { Button, CheckBox, Input, InputLabel, Spinner } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
-import { CloseIcon, EyeIcon, EyeNotCrossed } from "@/shared/icons";
+import {
+	CloseIcon,
+	EyeIcon,
+	EyeNotCrossed,
+	UserNameIcon,
+	LockIcon
+} from "@/shared/icons";
 
 import { handleAuth, getMeOptions } from "../../api";
 import type { IAuthParams, IAuthResponse } from "../../model";
@@ -58,6 +64,7 @@ export const LoginForm = () => {
 					disabled={isPending}
 				>
 					<div className={styles.inputWrapper}>
+						<UserNameIcon className={styles.leftIcon} />
 						<Input
 							type="text"
 							id="username"
@@ -84,6 +91,7 @@ export const LoginForm = () => {
 					error={errors.password ? errors.password?.message : ""}
 				>
 					<div className={styles.inputWrapper}>
+						<LockIcon className={styles.leftIcon} />
 						<Input
 							type={showPassword ? "text" : "password"}
 							id="password"

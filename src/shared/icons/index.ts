@@ -12,6 +12,7 @@ import PlusIcon from "./plus-icon.svg?react";
 import SearchIcon from "./search.svg?react";
 import SettingsIcon from "./settings.svg?react";
 import ThreeDotsIcon from "./three-dots.svg?react";
+import UserNameIcon from "./user-name.svg?react";
 
 export {
 	MailIcon,
@@ -27,5 +28,6 @@ export {
 	EyeNotCrossed,
 	SettingsIcon,
 	LangIcon,
-	NotifyIcon
+	NotifyIcon,
+	UserNameIcon
 };

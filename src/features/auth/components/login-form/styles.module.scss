@@ -25,6 +25,9 @@
 }
 .inputWrapper {
 	position: relative;
+	input {
+		padding-left: 54px;
+	}
 }
 .icon {
 	position: absolute;
@@ -39,4 +42,11 @@
 	color: $danger;
 	font-weight: 500;
 	font-size: 16px;
+}
+
+.leftIcon {
+	position: absolute;
+	left: 16px;
+	top: 50%;
+	transform: translateY(-50%);
 }

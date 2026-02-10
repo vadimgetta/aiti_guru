@@ -1,14 +1,12 @@
 .main {
 	padding: 20px 0;
-	padding-right: 30px;
 }
 
 .header {
 	background: $light;
 	padding: 26px 0;
-	margin: 20px 30px 0 0;
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+	margin-top: 20px;
+	border-radius: 10px;
 }
 .inner {
 	display: grid;

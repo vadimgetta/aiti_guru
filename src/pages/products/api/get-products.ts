@@ -14,7 +14,7 @@ export const getProducts = async ({
 	skip?: number;
 	sortBy?: string;
 	order?: string;
-}) => {
+}): Promise<IProductResponse> => {
 	try {
 		const url = search ? `${PRODUCTS_ROUTE}/search` : PRODUCTS_ROUTE;
 
@@ -22,7 +22,8 @@ export const getProducts = async ({
 			limit,
 			skip,
 			sortBy,
-			order
+			order,
+			select: "thumbnail,id,title,category,brand,price,sku,rating,stock"
 		};
 
 		if (search) {

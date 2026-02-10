@@ -55,11 +55,9 @@ export const ProductsTable = ({ data, isLoading }: IProductTableProps) => {
 				</tr>
 			</thead>
 			<tbody>
-				{data.pages.map((page: IProductResponse) =>
-					page.products.map((product) => (
-						<ProductItem key={product.id} item={product} />
-					))
-				)}
+				{data.products.map((item) => (
+					<ProductItem key={item.id} item={item} />
+				))}
 			</tbody>
 		</table>
 	);
