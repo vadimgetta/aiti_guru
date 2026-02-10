@@ -1,4 +1,5 @@
 import clsx from "clsx";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 
 import type { INotificationProps } from "./notification.props";
@@ -10,6 +11,15 @@ export const Notification = ({
 	onClose,
 	isOpen
 }: INotificationProps) => {
+	useEffect(() => {
+		if (isOpen) {
+			const timer = setTimeout(() => {
+				onClose();
+			}, 3000);
+			return () => clearTimeout(timer);
+		}
+	}, [isOpen, onClose]);
+
 	if (!isOpen) {
 		return null;
 	}

@@ -1,13 +1,39 @@
+.main {
+	padding: 20px 0;
+	padding-right: 30px;
+}
+
 .header {
-	margin-top: 20px;
 	background: $light;
 	padding: 26px 0;
+	margin: 20px 30px 0 0;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 .inner {
-	display: flex;
-	align-items: center;
+	display: grid;
+	grid-template-columns: 1fr 3fr 1fr;
 }
 
 .title {
 	margin-right: 370px;
+}
+
+.info {
+	display: flex;
+}
+
+.search {
+	width: 100%;
+	form {
+		width: 80%;
+	}
+}
+
+.info {
+	border-left: 1px solid $ghost_3;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 30px;
 }
