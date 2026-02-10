@@ -42,15 +42,21 @@ export const ProductsPage = () => {
 							<Heading level={3}>Все позиции</Heading>
 							<AddProduct />
 						</div>
-						<ProductsTable data={data} isLoading={!isFetched} />
-						<Pagination
-							currentPage={page}
-							totalItems={data.total}
-							pageSize={limit}
-							from={from}
-							to={to}
-							total={data.total}
-						/>
+						{data.products.length > 0 ? (
+							<>
+								<ProductsTable data={data} isLoading={!isFetched} />
+								<Pagination
+									currentPage={page}
+									totalItems={data.total}
+									pageSize={limit}
+									from={from}
+									to={to}
+									total={data.total}
+								/>
+							</>
+						) : (
+							<div className={styles.empty}>Ничего не нашлось</div>
+						)}
 					</div>
 				</Container>
 			)}

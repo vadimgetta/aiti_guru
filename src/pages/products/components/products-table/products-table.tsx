@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { useSearchParams } from "react-router";
 
 import { Heading } from "@/shared/components";
-import type { IProductResponse } from "@/shared/model";
 
 import { productTableHeader } from "../../model/product-table-header";
 import { updateSortSearchParams } from "../../utils/sort";

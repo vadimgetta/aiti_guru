@@ -9,6 +9,7 @@ import LogoIcon from "./logo.svg?react";
 import MailIcon from "./mail.svg?react";
 import NotifyIcon from "./notify.svg?react";
 import PlusIcon from "./plus-icon.svg?react";
+import RefreshIcon from "./refresh.svg?react";
 import SearchIcon from "./search.svg?react";
 import SettingsIcon from "./settings.svg?react";
 import ThreeDotsIcon from "./three-dots.svg?react";
@@ -29,5 +30,6 @@ export {
 	SettingsIcon,
 	LangIcon,
 	NotifyIcon,
-	UserNameIcon
+	UserNameIcon,
+	RefreshIcon
 };
