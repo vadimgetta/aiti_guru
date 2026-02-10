@@ -3,7 +3,6 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "https://vadimgetta.github.io/aiti_guru",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc -b && vite build",
@@ -12,9 +11,7 @@
 		"format": "prettier --write .",
 		"lint:fix": "eslint . --fix",
 		"type:check": "tsc --noEmit",
-		"prepare": "husky",
-		"predeploy": "pnpm build",
-		"deploy": "gh-pages -d dist"
+		"prepare": "husky"
 	},
 	"dependencies": {
 		"@tanstack/react-query": "^5.90.20",
@@ -43,7 +40,6 @@
 		"eslint-plugin-react": "^7.37.5",
 		"eslint-plugin-react-hooks": "^7.0.1",
 		"eslint-plugin-react-refresh": "^0.4.24",
-		"gh-pages": "^6.3.0",
 		"globals": "^16.5.0",
 		"husky": "^9.1.7",
 		"prettier": "3.8.1",
