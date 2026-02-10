@@ -1,6 +1,7 @@
 import ChevronLeftIcon from "./chevron-left.svg?react";
 import ChevronRightIcon from "./chevron-right.svg?react";
 import CloseIcon from "./close.svg?react";
+import EyeNotCrossed from "./eye-not-crossed.svg?react";
 import EyeIcon from "./eye.svg?react";
 import LockIcon from "./lock.svg?react";
 import LogoIcon from "./logo.svg?react";
@@ -19,5 +20,6 @@ export {
 	ChevronLeftIcon,
 	ChevronRightIcon,
 	LogoIcon,
-	PlusIcon
+	PlusIcon,
+	EyeNotCrossed
 };
