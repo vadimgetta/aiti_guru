@@ -9,6 +9,7 @@ export const createProduct = async (body: IProductForm): Promise<IProduct> => {
 		const { data } = await instanceAxios.post<IProduct>(`${PRODUCTS_ROUTE}/add`, {
 			...body
 		});
+
 		return { ...data, thumbnail: "", sku: "test" };
 	} catch {
 		throw new Error("Product not created");

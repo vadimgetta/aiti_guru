@@ -3,6 +3,7 @@ import { Outlet, useLocation } from "react-router";
 import { Search } from "@/features";
 import { Container, Heading } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
+import { LangIcon, MailIcon, NotifyIcon, SettingsIcon } from "@/shared/icons";
 
 import styles from "./styles.module.scss";
 
@@ -25,11 +26,19 @@ export const AuthorizedLayout = () => {
 						<Heading className={styles.title} level={2}>
 							{title(location.pathname)}
 						</Heading>
-						<Search />
+						<div className={styles.search}>
+							<Search />
+						</div>
+						<div className={styles.info}>
+							<LangIcon />
+							<NotifyIcon />
+							<MailIcon />
+							<SettingsIcon />
+						</div>
 					</div>
 				</Container>
 			</header>
-			<main>
+			<main className={styles.main}>
 				<Outlet />
 			</main>
 		</>

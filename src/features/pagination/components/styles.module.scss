@@ -1,0 +1,54 @@
+.pagination {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	width: 100%;
+	margin-top: 40px;
+}
+
+.info {
+	display: flex;
+	gap: 5px;
+	&__gray {
+		color: $ghost_2;
+	}
+}
+
+.chevron {
+	background: none;
+	border: none;
+	cursor: pointer;
+}
+
+.actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 8px;
+	button {
+		width: 30px;
+		height: 30px;
+		transition: all 0.2s ease;
+		&:hover {
+			background: $primary;
+			svg {
+				fill: $light;
+			}
+		}
+	}
+}
+.page {
+	cursor: pointer;
+	border: 1px solid $ghost_3;
+	background: none;
+	color: $secondary;
+	border-radius: 4px;
+	transition: all 0.2s ease;
+	&:hover {
+		background: $primary;
+		color: $light;
+	}
+}
+.active {
+	background: $primary;
+	color: $light;
+}

@@ -43,7 +43,19 @@ export const ProductItem = ({ item }: { item: IProduct }) => {
 				</span>
 				/5
 			</td>
-			<td className={clsx("centerText", styles.text)}>{item.price}</td>
+			<td className={clsx("centerText", styles.text)}>
+				{(() => {
+					const price = Number(item.price).toFixed(2);
+					const [whole, fraction] = price.split(".");
+
+					return (
+						<>
+							<span className={styles.whole}>{whole}</span>.
+							<span className={styles.fraction}>{fraction}</span>
+						</>
+					);
+				})()}
+			</td>
 			<td className={clsx("centerText", styles.text)}>{item.stock}</td>
 			<td>
 				<button className={styles.button}>

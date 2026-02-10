@@ -7,6 +7,13 @@ import { useNavigate } from "react-router";
 import { queryClient } from "@/shared/api";
 import { Button, CheckBox, Input, InputLabel, Spinner } from "@/shared/components";
 import { PAGES_ROUTES } from "@/shared/config";
+import {
+	CloseIcon,
+	EyeIcon,
+	EyeNotCrossed,
+	UserNameIcon,
+	LockIcon
+} from "@/shared/icons";
 
 import { handleAuth, getMeOptions } from "../../api";
 import type { IAuthParams, IAuthResponse } from "../../model";
@@ -18,12 +25,14 @@ import styles from "./styles.module.scss";
 export const LoginForm = () => {
 	const [authError, setAuthError] = useState<IAuthError | null>(null);
 	const [rememberMe, setRememberMe] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 	const navigate = useNavigate();
 
 	const {
 		register,
 		handleSubmit,
-		formState: { errors }
+		formState: { errors },
+		setValue
 	} = useForm<IAuthParams>({
 		mode: "onSubmit"
 	});
@@ -54,14 +63,25 @@ export const LoginForm = () => {
 					error={errors.username ? errors.username?.message : ""}
 					disabled={isPending}
 				>
-					<Input
-						type="text"
-						id="username"
-						appearance="primary"
-						placeholder="Логин"
-						error={!!errors.username}
-						{...register("username", { required: "Введите логин" })}
-					/>
+					<div className={styles.inputWrapper}>
+						<UserNameIcon className={styles.leftIcon} />
+						<Input
+							type="text"
+							id="username"
+							appearance="primary"
+							placeholder="Логин"
+							error={!!errors.username}
+							{...register("username", { required: "Введите логин" })}
+						/>
+						<button
+							className={styles.icon}
+							onClick={() => setValue("username", "")}
+							type="button"
+							disabled={isPending}
+						>
+							<CloseIcon />
+						</button>
+					</div>
 				</InputLabel>
 
 				<InputLabel
@@ -70,14 +90,25 @@ export const LoginForm = () => {
 					disabled={isPending}
 					error={errors.password ? errors.password?.message : ""}
 				>
-					<Input
-						type="password"
-						id="password"
-						appearance="primary"
-						placeholder="Пароль"
-						error={!!errors.password}
-						{...register("password", { required: "Введите пароль" })}
-					/>
+					<div className={styles.inputWrapper}>
+						<LockIcon className={styles.leftIcon} />
+						<Input
+							type={showPassword ? "text" : "password"}
+							id="password"
+							appearance="primary"
+							placeholder="Пароль"
+							error={!!errors.password}
+							{...register("password", { required: "Введите пароль" })}
+						/>
+						<button
+							className={styles.icon}
+							onClick={() => setShowPassword(!showPassword)}
+							type="button"
+							disabled={isPending}
+						>
+							{showPassword ? <EyeNotCrossed /> : <EyeIcon />}
+						</button>
+					</div>
 				</InputLabel>
 				{!!authError && (
 					<div className={clsx(styles.error, "centerText")}>

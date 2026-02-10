@@ -2,7 +2,6 @@ import clsx from "clsx";
 import { useSearchParams } from "react-router";
 
 import { Heading } from "@/shared/components";
-import type { IProductResponse } from "@/shared/model";
 
 import { productTableHeader } from "../../model/product-table-header";
 import { updateSortSearchParams } from "../../utils/sort";
@@ -55,11 +54,9 @@ export const ProductsTable = ({ data, isLoading }: IProductTableProps) => {
 				</tr>
 			</thead>
 			<tbody>
-				{data.pages.map((page: IProductResponse) =>
-					page.products.map((product) => (
-						<ProductItem key={product.id} item={product} />
-					))
-				)}
+				{data.products.map((item) => (
+					<ProductItem key={item.id} item={item} />
+				))}
 			</tbody>
 		</table>
 	);
