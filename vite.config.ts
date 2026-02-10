@@ -5,6 +5,7 @@ import { defineConfig } from "vite";
 import svgr from "vite-plugin-svgr";
 
 export default defineConfig({
+	base: "/aiti_guru/",
 	plugins: [
 		react(),
 		svgr({
