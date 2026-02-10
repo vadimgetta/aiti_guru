@@ -118,6 +118,8 @@ pnpm type:check # проверка типов TypeScript
 
 - product — добавление продукта, API, формы
 
+- paginatiom — пагинация
+
 - search — поиск и хук useSearch
 
 - src/shared — переиспользуемое:

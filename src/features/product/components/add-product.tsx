@@ -1,4 +1,5 @@
-import { useMutation, type InfiniteData } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
+import clsx from "clsx";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,7 +14,7 @@ import {
 	Notification
 } from "@/shared/components";
 import { QUERY_KEYS } from "@/shared/config";
-import { PlusIcon } from "@/shared/icons";
+import { PlusIcon, RefreshIcon } from "@/shared/icons";
 import type { IProduct, IProductResponse } from "@/shared/model";
 
 import { createProduct } from "../api/create-product";
@@ -33,51 +34,44 @@ export const AddProduct = () => {
 		mode: "onSubmit"
 	});
 
-	const { mutate, isPending } = useMutation<IProduct, Error, IProductForm>({
+	const { mutate, isPending, isError } = useMutation<IProduct, Error, IProductForm>({
 		mutationFn: (data) => createProduct(data),
 		onSuccess: (newProduct) => {
-			// Если был бы настоящий сервер
-			// queryClient.invalidateQueries({ queryKey: [QUERY_KEYS.PRODUCTS] });
-			// Это для теста
-			queryClient.setQueriesData<InfiniteData<IProductResponse>>(
+			queryClient.setQueriesData<IProductResponse>(
 				{ queryKey: [QUERY_KEYS.PRODUCTS] },
 				(oldData) => {
 					if (!oldData) {
 						return oldData;
 					}
+
 					return {
 						...oldData,
-						pages: oldData.pages.map((page, index) =>
-							index === 0
-								? {
-										...page,
-										products: [newProduct, ...page.products],
-										total: page.total + 1
-									}
-								: page
-						)
+						products: [newProduct, ...oldData.products],
+						total: oldData.total + 1
 					};
 				}
 			);
+
 			setIsOpenForm(false);
 			reset();
 			setIsOpenNotification(true);
 		}
 	});
-
 	const onSubmit = async (data: IProductForm) => {
 		mutate(data);
-		setIsOpenForm(false);
 	};
 	return (
 		<>
-			<Button
-				appearance="primary"
-				onClick={() => setIsOpenForm(true)}
-				className={styles.button}
-			>
-				<PlusIcon /> Добавить
-			</Button>
+			<div className={styles.action}>
+				<RefreshIcon />
+				<Button
+					appearance="primary"
+					onClick={() => setIsOpenForm(true)}
+					className={styles.button}
+				>
+					<PlusIcon /> Добавить
+				</Button>
+			</div>
 			<Modal isOpen={isOpenForm} onClose={() => setIsOpenForm(false)}>
 				<Heading centred level={3}>
 					Добавить товар
@@ -95,6 +89,20 @@ export const AddProduct = () => {
 							{...register("title", { required: "Введите логин" })}
 							appearance="primary"
 							error={!!errors.title}
+						/>
+					</InputLabel>
+					<InputLabel
+						error={errors.sku?.message}
+						idForLabel="sku"
+						title="Артикул"
+						disabled={isPending}
+					>
+						<Input
+							placeholder="Артикул"
+							type="text"
+							{...register("sku", { required: "Введите артикул" })}
+							appearance="primary"
+							error={!!errors.sku}
 						/>
 					</InputLabel>
 					<InputLabel
@@ -195,7 +203,11 @@ export const AddProduct = () => {
 							appearance="primary"
 						/>
 					</InputLabel>
-
+					{isError && (
+						<p className={clsx(styles.error, "centerText")}>
+							Что то пошло не так
+						</p>
+					)}
 					<Button type="submit" disabled={isPending} appearance="primary">
 						{isPending ? (
 							<Spinner size="sm" appearence="secondary" />
