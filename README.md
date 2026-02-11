@@ -5,6 +5,8 @@ Frontend-приложение на **React + TypeScript**, реализующе�
 
 ---
 
+`env VITE_API=https://dummyjson.com`
+
 ## 🚀 Технологии
 
 - **React 19**
